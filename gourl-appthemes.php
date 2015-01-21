@@ -142,9 +142,9 @@ function gourl_app_gateway_load()
 	
 			if (class_exists('gourlclass') && defined('GOURL') && defined('GOURL_ADMIN') && is_object($gourl))
 			{
-				if (true === version_compare(GOURL_VERSION, '1.2.5', '<'))
+				if (true === version_compare(GOURL_VERSION, '1.2.6', '<'))
 				{
-					$description .= '<div class="error"><p>' .sprintf(__( '<b>Your GoUrl Bitcoin Gateway <a href="%s">Main Plugin</a> version is too old. Requires 1.2.5 or higher version. Please <a href="%s">update</a> to latest version.</b>  &#160; &#160; &#160; &#160; Information: &#160; <a href="https://gourl.io/bitcoin-wordpress-plugin.html">Plugin Homepage</a> &#160; &#160; &#160; <a href="https://wordpress.org/plugins/gourl-bitcoin-payment-gateway-paid-downloads-membership/">WordPress.org Plugin Page</a>', GOURLAP ), GOURL_ADMIN.GOURL, $this->mainplugin_url).'</p></div>';
+					$description .= '<div class="error"><p>' .sprintf(__( '<b>Your GoUrl Bitcoin Gateway <a href="%s">Main Plugin</a> version is too old. Requires 1.2.6 or higher version. Please <a href="%s">update</a> to latest version.</b>  &#160; &#160; &#160; &#160; Information: &#160; <a href="https://gourl.io/bitcoin-wordpress-plugin.html">Plugin Homepage</a> &#160; &#160; &#160; <a href="https://wordpress.org/plugins/gourl-bitcoin-payment-gateway-paid-downloads-membership/">WordPress.org Plugin Page</a>', GOURLAP ), GOURL_ADMIN.GOURL, $this->mainplugin_url).'</p></div>';
 				}
 				else
 				{
@@ -287,7 +287,7 @@ function gourl_app_gateway_load()
 				echo '<h2>' . __( 'Information', GOURLAP ) . '</h2>' . PHP_EOL;
 				echo "<div class='error'>".__( "Please try a different payment method. Admin need to install and activate wordpress plugin 'GoUrl Bitcoin Gateway' (https://gourl.io/bitcoin-wordpress-plugin.html) to accept Bitcoin/Altcoin Payments online", GOURLAP )."</div>";
 			}
-			elseif (!$this->payments || !$options["defcoin"] || true === version_compare(GOURL_VERSION, '1.2.5', '<') ||
+			elseif (!$this->payments || !$options["defcoin"] || true === version_compare(GOURL_VERSION, '1.2.6', '<') ||
 					(array_key_exists($order_currency, $this->coin_names) && !array_key_exists($order_currency, $this->payments)))
 			{
 				echo '<h2>' . __( 'Information', GOURLAP ) . '</h2>' . PHP_EOL;
@@ -312,8 +312,8 @@ function gourl_app_gateway_load()
 				{
 					echo '<h2>' . __( 'Information', GOURLAP ) . '</h2>' . PHP_EOL;
 					echo "<div align='center'><a href='".wp_login_url(get_permalink())."'>
-						<img title='".__('You need to login or register on website first', GOURLAP )."' vspace='10'
-						src='".plugins_url('/cryptobox_login2.png', __FILE__)."' width='527' height='242' border='0'></a></div>";
+						<img style='border:none;box-shadow:none;' title='".__('You need to login or register on website first', GOURLAP )."' vspace='10'
+						src='".$gourl->box_image()."' border='0'></a></div>";
 				}
 				elseif ($amount <= 0)
 				{
