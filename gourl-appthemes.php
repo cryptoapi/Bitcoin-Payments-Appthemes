@@ -97,7 +97,7 @@ function gourl_app_gateway_load()
 		private $payments 			= array();
 		private $languages 			= array();
 		private $coin_names			= array();
-		private $mainplugin_url		= "/wp-admin/plugin-install.php?tab=search&type=term&s=GoUrl+Bitcoin+Payment+Gateway+Downloads";
+		private $mainplugin_url		= "";
 	
 		
 		
@@ -107,6 +107,8 @@ function gourl_app_gateway_load()
 		*/
 		public function __construct()
 		{
+			$this->mainplugin_url = get_bloginfo('wpurl') . "/wp-admin/plugin-install.php?tab=search&type=term&s=GoUrl+Bitcoin+Payment+Gateway+Downloads";
+			
 			$title = trim(get_option(GOURLAP."title"));
 			if (!$title) $title = __( 'Bitcoin/Altcoins', GOURLAP );
 			
@@ -444,7 +446,7 @@ function gourl_app_gateway_load()
     	}
     	
     	
-    	// c. Change order status to completed
+    	// c. Change order status to completed    
     	if ($order->get_status() != APPTHEMES_ORDER_COMPLETED && $order->get_status() != APPTHEMES_ORDER_ACTIVATED) $order->complete();
 
     	
