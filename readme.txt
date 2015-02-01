@@ -3,14 +3,14 @@ Contributors: gourl, GoUrl.io
 Plugin Name: GoUrl AppThemes - Bitcoin Payments for Classipress, Vantage, JobRoller, etc
 Plugin URI: https://gourl.io/bitcoin-appthemes-classipress-jobroller-vantage-etc.html
 Author URI: https://gourl.io 
-tags: appthemes, bitcoin, bitcoins, bitcoin payment, bitcoin payments, paypal, gourl, appthemes bitcoin, appthemes payment gateway, btc, coinbase, bitpay, shopping cart, ecommerce, commerce, eshop, payment gateway, payment plugin, payment, e-commerce, ecommerce, fulfillment, woo commerce, wp e-commerce, credit, accept bitcoin, bitcoin payments, bitcoin plugin, bitcoin wordpress plugin, bitcoin store, bitpay, cart, checkout, e-commerce, online store, payment, payment gateway, sell, shortcode, litecoin, dogecoin, speedcoin, darkcoin, vertcoin, reddcoin, feathercoin, vericoin, potcoin, appthemes, app themes, premium themes, premium theme, classipress, vantage, jobroller, clipper, taskerr, hirebee, ideas, quality control, premium, theme, themes
+tags: appthemes, bitcoin, bitcoins, bitcoin payment, bitcoin payments, paypal, gourl, appthemes bitcoin, cryptocurrency, crypto currency, appthemes payment gateway, btc, coinbase, bitpay, shopping cart, ecommerce, commerce, eshop, payment gateway, payment plugin, payment, e-commerce, ecommerce, fulfillment, woo commerce, wp e-commerce, credit, accept bitcoin, bitcoin payments, bitcoin plugin, bitcoin wordpress plugin, bitcoin store, bitpay, cart, checkout, e-commerce, online store, payment, payment gateway, sell, shortcode, litecoin, dogecoin, speedcoin, darkcoin, vertcoin, reddcoin, feathercoin, vericoin, potcoin, appthemes, app themes, premium themes, premium theme, classipress, vantage, jobroller, clipper, taskerr, hirebee, ideas, quality control, premium, theme, themes
 Requires at least: 3.5
 Tested up to: 4.2
-Stable Tag: 1.0.0
+Stable Tag: 1.0.1
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Provides a Bitcoin Payment Gateway for Appthemes Premium Themes - Classipress, Vantage, JobRoller, Clipper, Taskerr, HireBee, Ideas, Quality Control
+Provides Bitcoin/Altcoin Payment Gateway for all Appthemes Premium Themes - Classipress, Vantage, JobRoller, Clipper, Taskerr, HireBee, Ideas, etc.
 
 
 
@@ -22,15 +22,15 @@ See [Screenshots](https://gourl.io/bitcoin-appthemes-classipress-jobroller-vanta
 Wordpress Plugin for Appthemes Features -
 
 * 100% Free Open Source Plugin on [Github.com](https://github.com/cryptoapi/Bitcoin-Payments-Appthemes)
+* Provides a Cryptocurrency Payment Gateway for [Appthemes](http://www.appthemes.com/themes/) - Classipress, Vantage, JobRoller, Clipper, Taskerr, HireBee, Ideas, Quality Control, etc.
+* Accept Bitcoin, Litecoin, Speedcoin, Dogecoin, Paycoin, Darkcoin, Reddcoin, Potcoin, Feathercoin, Vertcoin, Vericoin payments in Appthemes
 * No Monthly Fee, Transaction Fee from 0%
-* Provides a Payment Gateway for [Appthemes](http://www.appthemes.com/themes/) - Classipress, Vantage, JobRoller, Clipper, Taskerr, HireBee, Ideas, Quality Control, etc.
-* Accept Bitcoin, Litecoin, Dogecoin, Speedcoin, Darkcoin, Vertcoin, Reddcoin, Feathercoin, Vericoin, Potcoin payments in Appthemes
 * Product Prices in Bitcoin/Altcoins directly and sends the amount straight to your business wallet.
 * Product Prices in USD/EUR/GBP/etc. Google/Bitstamp/Cryptsy Live Exchange Rates
 * Direct Integration on your website, no external payment pages opens (as other payment gateways offer)
 * You will see the bitcoin/altcoin payment statistics in one common table on your website. 
 * No Chargebacks, Global, Secure. All in automatic mode.
-* Free Plugin Support for You
+* [Free Tech Support](https://gourl.io/view/contact/Contact_Us.html) for You
 
 Please note you need to install also - [GoUrl Wordpress Plugin with Payment Gateway](https://wordpress.org/plugins/gourl-bitcoin-payment-gateway-paid-downloads-membership/)
 
@@ -81,7 +81,10 @@ In the search field type "GoUrl Appthemes" and click Search Plugins. Once you've
 
 == Changelog ==
 
+= 1.0.1 =
+Support new coin - Paycoin XPY
+
 = 1.0.0 =
 Initial Release              
    
-   
+        

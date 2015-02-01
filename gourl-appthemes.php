@@ -2,8 +2,8 @@
 /*
 Plugin Name: 		GoUrl AppThemes - Bitcoin Payments for Classipress, Vantage, JobRoller, etc
 Plugin URI: 		https://gourl.io/bitcoin-appthemes-classipress-jobroller-vantage-etc.html
-Description: 		Provides a <a href="https://gourl.io">GoUrl.io</a> Bitcoin Payment Gateway for AppThemes Premium Themes - Classipress, Vantage, JobRoller, Clipper, Taskerr, HireBee, Ideas, Quality Control, etc. Support product prices in USD/EUR/etc or in Bitcoin/Altcoins directly and sends the amount straight to your business Bitcoin/Altcoin wallet. Convert your USD/EUR/etc prices to cryptocoins using Google/Cryptsy Live Exchange Rates. Accept Bitcoin, Litecoin, Dogecoin, Speedcoin, Darkcoin, Vertcoin, Reddcoin, Feathercoin, Vericoin, Potcoin payments online. No Chargebacks, Global, Secure. All in automatic mode.
-Version: 			1.0.0
+Description: 		Provides a <a href="https://gourl.io">GoUrl.io</a> Bitcoin/Altcoins Payment Gateway for all <a href="http://www.appthemes.com/themes/">AppThemes.com Premium Themes</a> - Classipress, Vantage, JobRoller, Clipper, Taskerr, HireBee, Ideas, Quality Control, etc. Support product prices in USD/EUR/etc and in Bitcoin/Altcoins directly; sends the amount straight to your business Bitcoin/Altcoin wallet. Convert your USD/EUR/etc prices to cryptocoins using Google/Bitstamp/Cryptsy Live Exchange Rates. Accept Bitcoin, Litecoin, Speedcoin, Dogecoin, Paycoin, Darkcoin, Reddcoin, Potcoin, Feathercoin, Vertcoin, Vericoin payments online. No Chargebacks, Global, Secure. All in automatic mode.
+Version: 			1.0.1
 Author: 			GoUrl.io
 Author URI: 		https://gourl.io
 License: 			GPLv2
@@ -42,14 +42,14 @@ function gourl_app_gateway_load()
 		}
 	
 		if ($file == $this_plugin) {
-			$settings_link = '<a href="' . get_bloginfo('wpurl') . '/wp-admin/admin.php?page=app-payments-settings&tab=gourl">'.__( 'Settings', GOURLAP ).'</a>';
+			$settings_link = '<a href="'.admin_url('admin.php?page=app-payments-settings&tab=gourl').'">'.__( 'Settings', GOURLAP ).'</a>';
 			array_unshift($links, $settings_link);
 				
 			if (defined('GOURL'))
 			{
-				$unrecognised_link = '<a href="' . get_bloginfo('wpurl') . '/wp-admin/admin.php?page='.GOURL.'payments&s=unrecognised">'.__( 'Unrecognised', GOURLAP ).'</a>';
+				$unrecognised_link = '<a href="'.admin_url('admin.php?page='.GOURL.'payments&s=unrecognised').'">'.__( 'Unrecognised', GOURLAP ).'</a>';
 				array_unshift($links, $unrecognised_link);
-				$payments_link = '<a href="' . get_bloginfo('wpurl') . '/wp-admin/admin.php?page='.GOURL.'payments&s=gourlappthemes">'.__( 'Payments', GOURLAP ).'</a>';
+				$payments_link = '<a href="'.admin_url('admin.php?page='.GOURL.'payments&s=gourlappthemes').'">'.__( 'Payments', GOURLAP ).'</a>';
 				array_unshift($links, $payments_link);
 			}
 		}
@@ -107,7 +107,7 @@ function gourl_app_gateway_load()
 		*/
 		public function __construct()
 		{
-			$this->mainplugin_url = get_bloginfo('wpurl') . "/wp-admin/plugin-install.php?tab=search&type=term&s=GoUrl+Bitcoin+Payment+Gateway+Downloads";
+			$this->mainplugin_url = admin_url("plugin-install.php?tab=search&type=term&s=GoUrl+Bitcoin+Payment+Gateway+Downloads");
 			
 			$title = trim(get_option(GOURLAP."title"));
 			if (!$title) $title = __( 'Bitcoin/Altcoins', GOURLAP );
@@ -144,9 +144,9 @@ function gourl_app_gateway_load()
 	
 			if (class_exists('gourlclass') && defined('GOURL') && defined('GOURL_ADMIN') && is_object($gourl))
 			{
-				if (true === version_compare(GOURL_VERSION, '1.2.6', '<'))
+				if (true === version_compare(GOURL_VERSION, '1.2.7', '<'))
 				{
-					$description .= '<div class="error"><p>' .sprintf(__( '<b>Your GoUrl Bitcoin Gateway <a href="%s">Main Plugin</a> version is too old. Requires 1.2.6 or higher version. Please <a href="%s">update</a> to latest version.</b>  &#160; &#160; &#160; &#160; Information: &#160; <a href="https://gourl.io/bitcoin-wordpress-plugin.html">Plugin Homepage</a> &#160; &#160; &#160; <a href="https://wordpress.org/plugins/gourl-bitcoin-payment-gateway-paid-downloads-membership/">WordPress.org Plugin Page</a>', GOURLAP ), GOURL_ADMIN.GOURL, $this->mainplugin_url).'</p></div>';
+					$description .= '<div class="error"><p>' .sprintf(__( '<b>Your GoUrl Bitcoin Gateway <a href="%s">Main Plugin</a> version is too old. Requires 1.2.7 or higher version. Please <a href="%s">update</a> to latest version.</b>  &#160; &#160; &#160; &#160; Information: &#160; <a href="https://gourl.io/bitcoin-wordpress-plugin.html">Plugin Homepage</a> &#160; &#160; &#160; <a href="https://wordpress.org/plugins/gourl-bitcoin-payment-gateway-paid-downloads-membership/">WordPress.org Plugin Page</a>', GOURLAP ), GOURL_ADMIN.GOURL, $this->mainplugin_url).'</p></div>';
 				}
 				else
 				{
@@ -172,8 +172,8 @@ function gourl_app_gateway_load()
 				$description .= '<div class="error"><p>' .sprintf(__( '<b>You need to install GoUrl Bitcoin Gateway Main Plugin also. Go to - <a href="%s">Bitcoin Gateway plugin page</a></b> &#160; &#160; &#160; &#160; Information: &#160; <a href="https://gourl.io/bitcoin-wordpress-plugin.html">Plugin Homepage</a> &#160; &#160; &#160; <a href="https://wordpress.org/plugins/gourl-bitcoin-payment-gateway-paid-downloads-membership/">WordPress.org Plugin Page</a> ', GOURLAP ), $this->mainplugin_url).'</p></div>';
 			}
 				
-			$description .= __( 'If you use multiple stores, please create separate <a target="_blank" href="https://gourl.io/editrecord/coin_boxes/0">GoUrl Payment Box</a> (with unique payment box public/private keys) for each of your stores/websites. Do not use the same GoUrl Payment Box with the same public/private keys on your different websites/stores.', GOURLAP ).'<br/>';
-			$description .= sprintf(__( 'Accept %s payments online in Appthemes Premium Themes - Classipress, Taskerr, HireBee, Vantage, Clipper, JobRoller, Ideas, Quality Control, etc.', GOURLAP), ($this->coin_names?ucwords(implode(", ", $this->coin_names)):"Bitcoin, Litecoin, Dogecoin, Speedcoin, Darkcoin, Vertcoin, Reddcoin, Feathercoin, Vericoin, Potcoin")).'<br/>';
+			$description .= __( 'If you use multiple stores/sites online, please create separate <a target="_blank" href="https://gourl.io/editrecord/coin_boxes/0">GoUrl Payment Box</a> (with unique payment box public/private keys) for each of your stores/websites. Do not use the same GoUrl Payment Box with the same public/private keys on your different websites/stores.', GOURLAP ).'<br/>';
+			$description .= sprintf(__( 'Accept %s payments online in Appthemes Premium Themes - Classipress, Taskerr, HireBee, Vantage, Clipper, JobRoller, Ideas, Quality Control, etc.', GOURLAP), ($this->coin_names?ucwords(implode(", ", $this->coin_names)):"Bitcoin, Litecoin, Speedcoin, Dogecoin, Paycoin, Darkcoin, Reddcoin, Potcoin, Feathercoin, Vertcoin, Vericoin")).'<br/>';
 	
 	
 			$fields = array(
@@ -289,7 +289,7 @@ function gourl_app_gateway_load()
 				echo '<h2>' . __( 'Information', GOURLAP ) . '</h2>' . PHP_EOL;
 				echo "<div class='error'>".__( "Please try a different payment method. Admin need to install and activate wordpress plugin 'GoUrl Bitcoin Gateway' (https://gourl.io/bitcoin-wordpress-plugin.html) to accept Bitcoin/Altcoin Payments online", GOURLAP )."</div>";
 			}
-			elseif (!$this->payments || !$options["defcoin"] || true === version_compare(GOURL_VERSION, '1.2.6', '<') ||
+			elseif (!$this->payments || !$options["defcoin"] || true === version_compare(GOURL_VERSION, '1.2.7', '<') ||
 					(array_key_exists($order_currency, $this->coin_names) && !array_key_exists($order_currency, $this->payments)))
 			{
 				echo '<h2>' . __( 'Information', GOURLAP ) . '</h2>' . PHP_EOL;
@@ -314,7 +314,7 @@ function gourl_app_gateway_load()
 				{
 					echo '<h2>' . __( 'Information', GOURLAP ) . '</h2>' . PHP_EOL;
 					echo "<div align='center'><a href='".wp_login_url(get_permalink())."'>
-						<img style='border:none;box-shadow:none;' title='".__('You need to login or register on website first', GOURLAP )."' vspace='10'
+						<img style='border:none;box-shadow:none;' title='".__('You need first to login or register on the website to make Bitcoin/Altcoin Payments', GOURLAP )."' vspace='10'
 						src='".$gourl->box_image()."' border='0'></a></div>";
 				}
 				elseif ($amount <= 0)
