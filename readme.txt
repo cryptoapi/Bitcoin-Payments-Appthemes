@@ -3,10 +3,10 @@ Contributors: gourl, GoUrl.io
 Plugin Name: GoUrl AppThemes - Bitcoin Payments for Classipress, Vantage, JobRoller, etc
 Plugin URI: https://gourl.io/bitcoin-appthemes-classipress-jobroller-vantage-etc.html
 Author URI: https://gourl.io 
-tags: appthemes, bitcoin, bitcoins, bitcoin payment, bitcoin payments, paypal, gourl, appthemes bitcoin, cryptocurrency, crypto currency, appthemes payment gateway, btc, coinbase, bitpay, shopping cart, ecommerce, commerce, eshop, payment gateway, payment plugin, payment, e-commerce, ecommerce, fulfillment, woo commerce, wp e-commerce, credit, accept bitcoin, bitcoin payments, bitcoin plugin, bitcoin wordpress plugin, bitcoin store, bitpay, cart, checkout, e-commerce, online store, payment, payment gateway, sell, shortcode, litecoin, dogecoin, speedcoin, darkcoin, vertcoin, reddcoin, feathercoin, vericoin, potcoin, appthemes, app themes, premium themes, premium theme, classipress, vantage, jobroller, clipper, taskerr, hirebee, ideas, quality control, premium, theme, themes
+tags: appthemes, app themes, bitcoin, bitcoins, bitcoin payments, gourl, escrow, escrow payments, appthemes bitcoin, cryptocurrency, btc, payment gateway, payment, e-commerce, bitcoin plugin, litecoin, dogecoin, speedcoin, darkcoin, vertcoin, reddcoin, feathercoin, vericoin, potcoin, paycoin, premium themes, premium theme, classipress, vantage, jobroller, clipper, taskerr, hirebee, ideas, quality control, premium, theme, themes
 Requires at least: 3.5
 Tested up to: 4.2
-Stable Tag: 1.0.1
+Stable Tag: 1.0.2
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,6 +25,7 @@ Wordpress Plugin for Appthemes Features -
 * Provides a Cryptocurrency Payment Gateway for [Appthemes](http://www.appthemes.com/themes/) - Classipress, Vantage, JobRoller, Clipper, Taskerr, HireBee, Ideas, Quality Control, etc.
 * Accept Bitcoin, Litecoin, Speedcoin, Dogecoin, Paycoin, Darkcoin, Reddcoin, Potcoin, Feathercoin, Vertcoin, Vericoin payments in Appthemes
 * No Monthly Fee, Transaction Fee from 0%
+* Bitcoin/altcoin Escrow payments support
 * Product Prices in Bitcoin/Altcoins directly and sends the amount straight to your business wallet.
 * Product Prices in USD/EUR/GBP/etc. Google/Bitstamp/Cryptsy Live Exchange Rates
 * Direct Integration on your website, no external payment pages opens (as other payment gateways offer)
@@ -81,10 +82,13 @@ In the search field type "GoUrl Appthemes" and click Search Plugins. Once you've
 
 == Changelog ==
 
+= 1.0.2 =
+Support Bitcoin/altcoin Escrow payments
+
 = 1.0.1 =
 Support new coin - Paycoin XPY
 
 = 1.0.0 =
-Initial Release              
+Initial Release                       
    
         
