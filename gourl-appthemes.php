@@ -172,7 +172,7 @@ function gourl_app_gateway_load()
 				$url3	= $url;
 				$text 	= __( '<b>Please install GoUrl Bitcoin Gateway WP Plugin &#187;</b>', GOURLAP );
 	
-				$description .= '<div class="error"><p>' .sprintf(__( '<b>You need to install GoUrl Bitcoin Gateway Main Plugin also. Go to - <a href="%s">Bitcoin Gateway plugin page</a></b> &#160; &#160; &#160; &#160; Information: &#160; <a href="https://gourl.io/bitcoin-wordpress-plugin.html">Plugin Homepage</a> &#160; &#160; &#160; <a href="https://wordpress.org/plugins/gourl-bitcoin-payment-gateway-paid-downloads-membership/">WordPress.org Plugin Page</a> ', GOURLAP ), $this->mainplugin_url).'</p></div>';
+				$description .= '<div class="error"><p>' .sprintf(__( '<b>You need to install GoUrl Bitcoin Gateway Main Plugin also. &#160; Go to - <a href="%s">Automatic installation</a> or <a href="https://gourl.io/bitcoin-wordpress-plugin.html">Manual</a></b>. &#160; &#160; &#160; &#160; Information: &#160; <a href="https://gourl.io/bitcoin-wordpress-plugin.html">Main Plugin Homepage</a> &#160; &#160; &#160; <a href="https://wordpress.org/plugins/gourl-bitcoin-payment-gateway-paid-downloads-membership/">WordPress.org Plugin Page</a> ', GOURLWC ), $this->mainplugin_url).'</p></div>';
 			}
 				
 			$description  	.= "<b>" . __( 'Secure payments with virtual currency. &#160; <a target="_blank" href="https://bitcoin.org/">What is Bitcoin?</a>', GOURLAP ) . '</b><br/>';
@@ -246,6 +246,8 @@ function gourl_app_gateway_load()
 		*/
 		public function style_notes()
 		{
+			if (!defined('GOURL_ADMIN')) return "";
+			
 			$notes = sprintf(__( 'Payment Box <a target="_blank" href="%s">sizes</a> and border <a target="_blank" href="%s">shadow</a> you can change <a href="%s">here &#187;</a>', GOURLAP ), "https://gourl.io/images/global/sizes.png", "https://gourl.io/images/global/styles.png", GOURL_ADMIN.GOURL."settings#gourlvericoinprivate_key");
 		
 			return $notes;
@@ -847,7 +849,7 @@ function appthemes_init_gourl_escrow()
 	
 	
 	/*
-	 * 8. Initialize GoUrl Gateway for Appthemes 
+	 * 8. Initialize
 	*/
 	gourl_app_currency();
 	appthemes_register_gateway( 'APP_Gourl' );
@@ -855,6 +857,6 @@ function appthemes_init_gourl_escrow()
 
 
 
-} // end gourl_app_gateway_load()
+} // end gourl_app_gateway_load() 
 
 
