@@ -598,7 +598,7 @@ function appthemes_init_gourl_escrow()
 			$order->add_data( 'user'.$k.'_escrow_addr_'.$coinName, $addr );
 				
 			if (!$addr) 						$addr = "- no -";
-			elseif (strlen($addr) != 34) 		$addr = "- invalid -";
+			elseif (strlen($addr) < 26 || strlen($addr) > 35) 	$addr = "- invalid -";
 			elseif (isset($www[$coinName])) 	$addr = "<a target='_blank' href='" . $www[$coinName] . (stripos($www[$coinName],'cryptoid.info')?'address.dws?':'address/') . $addr . "'>" . $addr . "</a>";
 			$txt .= sprintf(__(($type == "buyer"?"Buyer":"Seller").' - <a href="%s">user%s</a> - provided %s wallet address: &#160; %s', GOURLAP), admin_url("user-edit.php?user_id=").$k, $k, ucfirst($coinName), $addr) . "<br>";
 		}

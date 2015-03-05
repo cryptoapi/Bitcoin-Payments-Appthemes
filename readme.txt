@@ -3,7 +3,7 @@ Contributors: gourl, GoUrl.io
 Plugin Name: GoUrl AppThemes - Bitcoin Payments for Classipress, Vantage, JobRoller, etc
 Plugin URI: https://gourl.io/bitcoin-appthemes-classipress-jobroller-vantage-etc.html
 Author URI: https://gourl.io 
-tags: appthemes, app themes, bitcoin, bitcoins, bitcoin payments, gourl, escrow, escrow payments, appthemes bitcoin, cryptocurrency, btc, payment gateway, payment, e-commerce, bitcoin plugin, litecoin, dogecoin, speedcoin, darkcoin, vertcoin, reddcoin, feathercoin, vericoin, potcoin, paycoin, premium themes, premium theme, classipress, vantage, jobroller, clipper, taskerr, hirebee, ideas, quality control, premium, theme, themes
+tags: appthemes, app themes, bitcoin, bitcoins, bitcoin payments, bitcoin escrow, bitcoin escrow script, gourl, escrow, escrow payments, appthemes bitcoin, cryptocurrency, btc, payment gateway, payment, e-commerce, bitcoin plugin, litecoin, dogecoin, speedcoin, darkcoin, vertcoin, reddcoin, feathercoin, vericoin, potcoin, paycoin, premium themes, premium theme, classipress, vantage, jobroller, clipper, taskerr, hirebee, ideas, quality control, premium, theme, themes
 Requires at least: 3.5
 Tested up to: 4.2
 Stable Tag: 1.0.2
@@ -71,7 +71,7 @@ In the search field type "GoUrl Appthemes" and click Search Plugins. Once you've
 == Screenshots ==
 
 1. Bitcoin Payments Gateway for Appthemes - Options
-2. Appthemes Purchase a Membership Pack
+2. Appthemes Purchase
 3. Appthemes Checkout Page
 4. Bitcoin Payment Received Successfully
 5. Appthemes Edit Order Page
@@ -83,12 +83,12 @@ In the search field type "GoUrl Appthemes" and click Search Plugins. Once you've
 == Changelog ==
 
 = 1.0.2 =
-Support Bitcoin/altcoin Escrow payments
+Support bitcoin/altcoin escrow payments
 
 = 1.0.1 =
 Support new coin - Paycoin XPY
 
 = 1.0.0 =
-Initial Release                       
+Initial Release  
    
         
