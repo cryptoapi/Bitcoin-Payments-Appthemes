@@ -6,7 +6,7 @@ Author URI: https://gourl.io
 tags: appthemes, app themes, bitcoin, bitcoins, bitcoin payments, bitcoin escrow, bitcoin escrow script, gourl, escrow, escrow payments, appthemes bitcoin, cryptocurrency, btc, payment gateway, payment, e-commerce, bitcoin plugin, litecoin, dogecoin, speedcoin, dash, vertcoin, reddcoin, feathercoin, vericoin, potcoin, paycoin, premium themes, premium theme, classipress, vantage, jobroller, clipper, taskerr, hirebee, ideas, quality control, premium, theme, themes, peercoin
 Requires at least: 3.5
 Tested up to: 4.2
-Stable Tag: 1.1.0
+Stable Tag: 1.1.1
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,7 @@ Wordpress Plugin for Appthemes Features -
 * Direct Integration on your website, no external payment pages opens (as other payment gateways offer)
 * You will see the bitcoin/altcoin payment statistics in one common table on your website. 
 * No Chargebacks, Global, Secure. All in automatic mode.
+* If you intend plugin to be used in a language other than English, see the [Language Translations page](https://gourl.io/languages.html)
 * [Free Tech Support](https://gourl.io/view/contact/Contact_Us.html) for You
 
 
@@ -86,9 +87,12 @@ In the search field type "GoUrl Appthemes" and click Search Plugins. Once you've
 
 == Changelog ==
 
+= 1.1.1 =
+Localisation - You can easy change/localize any text in plugin
+
 = 1.1.0 =
-Added Peercoin 
-Spanish payment box localisation
+* Add Peercoin [PPC] cryptocurrency
+* Add Spanish Payment Box translation
 
 = 1.0.2 =
 Support bitcoin/altcoin escrow payments
@@ -98,5 +102,5 @@ Support new coin - Paycoin
 
 = 1.0.0 =
 Initial Release
-
- 
+  
+  

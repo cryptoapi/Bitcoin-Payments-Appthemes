@@ -1,0 +1,427 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: GoUrl AppThemes - Bitcoin Payments for Classipress, "
+"Vantage, JobRoller, etc\n"
+"POT-Creation-Date: 2015-05-28 12:00-0000\n"
+"PO-Revision-Date: 2015-05-28 12:00-0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.6\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: gourl-appthemes.php:61
+msgid "Settings"
+msgstr ""
+
+#: gourl-appthemes.php:66
+msgid "Unrecognised"
+msgstr ""
+
+#: gourl-appthemes.php:68
+msgid "Payments"
+msgstr ""
+
+#: gourl-appthemes.php:92
+msgid "Cryptocurrency"
+msgstr ""
+
+#: gourl-appthemes.php:97
+msgid "Bitcoin"
+msgstr ""
+
+#: gourl-appthemes.php:134 gourl-appthemes.php:218 gourl-appthemes.php:771
+msgid "Bitcoin/Altcoins"
+msgstr ""
+
+#: gourl-appthemes.php:137 gourl-appthemes.php:167
+msgid "GoUrl Bitcoin/Altcoins"
+msgstr ""
+
+#: gourl-appthemes.php:170
+msgid "Plugin Homepage"
+msgstr ""
+
+#: gourl-appthemes.php:170
+msgid "screenshots"
+msgstr ""
+
+#: gourl-appthemes.php:171
+msgid "Plugin on Github - 100% Free Open Source"
+msgstr ""
+
+# Please do NOT translate or change HTML tags.
+# Correctly -
+# --------------
+# English - .. <a href='%s'>Main Plugin</a> ..
+# French - .. <a href='%s'>Plugin Principale</a> ..
+#: gourl-appthemes.php:177
+#, php-format
+msgid ""
+"Your GoUrl Bitcoin Gateway <a href='%s'>Main Plugin</a> version is too old. "
+"Requires 1.3.2 or higher version. Please <a href='%s'>update</a> to latest "
+"version."
+msgstr ""
+
+#: gourl-appthemes.php:178 gourl-appthemes.php:199 gourl-appthemes.php:793
+#: gourl-appthemes.php:798 gourl-appthemes.php:803 gourl-appthemes.php:809
+#: gourl-appthemes.php:829 gourl-appthemes.php:836 gourl-appthemes.php:850
+msgid "Information"
+msgstr ""
+
+#: gourl-appthemes.php:178 gourl-appthemes.php:199
+msgid "Main Plugin Homepage"
+msgstr ""
+
+#: gourl-appthemes.php:179 gourl-appthemes.php:200
+msgid "WordPress.org Plugin Page"
+msgstr ""
+
+#: gourl-appthemes.php:193
+msgid "- Please setup -"
+msgstr ""
+
+#: gourl-appthemes.php:198
+#, php-format
+msgid ""
+"You need to install GoUrl Bitcoin Gateway Main Plugin also. Go to - <a "
+"href='%s'>Automatic installation</a> or <a href='%s'>Manual</a>."
+msgstr ""
+
+#: gourl-appthemes.php:206
+msgid "Please install GoUrl Bitcoin Gateway WP Plugin"
+msgstr ""
+
+#: gourl-appthemes.php:209
+msgid ""
+"Secure payments with virtual currency. <a target='_blank' href='https://"
+"bitcoin.org/'>What is Bitcoin?</a>"
+msgstr ""
+
+# Please do NOT translate variable '%s'.
+# Correctly -
+# --------------
+# English: Accept %s payments ...
+# French: Accepter %s les paiements ...
+#: gourl-appthemes.php:210
+#, php-format
+msgid ""
+"Accept %s payments online in Appthemes Premium Themes - Classipress, "
+"Taskerr, HireBee, Vantage, Clipper, JobRoller, Ideas, Quality Control, etc."
+msgstr ""
+
+#: gourl-appthemes.php:211
+#, php-format
+msgid ""
+"If you use multiple stores/sites online, please create separate <a "
+"target='_blank' href='%s'>GoUrl Payment Box</a> (with unique payment box "
+"public/private keys) for each of your stores/websites. Do not use the same "
+"GoUrl Payment Box with the same public/private keys on your different "
+"websites/stores."
+msgstr ""
+
+#: gourl-appthemes.php:216
+msgid "Title"
+msgstr ""
+
+#: gourl-appthemes.php:219
+msgid "Payment method title that the customer will see on your checkout"
+msgstr ""
+
+#: gourl-appthemes.php:223
+msgid "PaymentBox Default Coin"
+msgstr ""
+
+#: gourl-appthemes.php:227
+#, php-format
+msgid ""
+"Default Coin in Crypto Payment Box. &#160; Activated Payments : <a href='%s'>"
+"%s</a>"
+msgstr ""
+
+#: gourl-appthemes.php:231
+msgid "PaymentBox Language"
+msgstr ""
+
+#: gourl-appthemes.php:235
+msgid "Default Crypto Payment Box Localisation"
+msgstr ""
+
+#: gourl-appthemes.php:239
+msgid "Exchange Rate Multiplier"
+msgstr ""
+
+#: gourl-appthemes.php:242
+msgid ""
+"The system uses the multiplier rate with today LIVE cryptocurrency exchange "
+"rates (which are updated every 30 minutes) when the transaction is "
+"calculating from a fiat currency (e.g. USD, EUR, etc) to cryptocurrency. "
+"<br> Example: <b>1.05</b> - will add an extra 5% to the total price in "
+"bitcoin/altcoins, <b>0.85</b> - will be a 15% discount for the price in "
+"bitcoin/altcoins. Default: 1.00 "
+msgstr ""
+
+#: gourl-appthemes.php:246
+msgid "Icons Size"
+msgstr ""
+
+#: gourl-appthemes.php:249
+msgid ""
+"Cryptocoin icons size in 'Select Payment Method' that the customer will see "
+"on your checkout. Default 60px. Allowed: 30..250px"
+msgstr ""
+
+#: gourl-appthemes.php:253
+msgid "PaymentBox Style"
+msgstr ""
+
+#: gourl-appthemes.php:282
+#, php-format
+msgid ""
+"Payment Box <a href='%s'>sizes</a> and border <a href='%s'>shadow</a> you "
+"can change <a href='%s'>here &#187;</a>"
+msgstr ""
+
+#: gourl-appthemes.php:283
+#, php-format
+msgid ""
+"If you want to use GoUrl AppThemes Bitcoin Gateway plugin in a language "
+"other than English, see the page <a href='%s'>Languages and Translations</a>"
+msgstr ""
+
+#: gourl-appthemes.php:306
+#, php-format
+msgid ""
+"If you like <b>GoUrl AppThemes Bitcoin Gateway</b> please leave us a %s "
+"rating on %s. A huge thank you from GoUrl in advance!"
+msgstr ""
+
+#: gourl-appthemes.php:369
+msgid "GoUrl Escrow (optional)"
+msgstr ""
+
+#: gourl-appthemes.php:378
+msgid "Admin Email"
+msgstr ""
+
+#: gourl-appthemes.php:382
+msgid ""
+"Your email address. You will receive email notifications when need to "
+"forward escrow funds from your wallet to the seller or to refund the buyer. "
+"You will need to make payments from your wallet/s manually."
+msgstr ""
+
+#: gourl-appthemes.php:385
+msgid "Escrow - Exchange Rate Multiplier"
+msgstr ""
+
+#: gourl-appthemes.php:389
+msgid ""
+"The system uses the multiplier rate with today LIVE cryptocurrency exchange "
+"rates when the escrow funds amount is calculating from a fiat currency (e.g. "
+"USD, EUR, etc). <br>Example: <b>1.05</b> - will add an extra 5% to the total "
+"amount in bitcoin/altcoins, <b>0.85</b> - will be a 15% discount for the "
+"amount in bitcoin/altcoins. Default: 1.00"
+msgstr ""
+
+#: gourl-appthemes.php:405
+#, php-format
+msgid ""
+"<strong>Important:</strong> Gourl Bitcoin/Altcoin Gateway does not fully "
+"support Escrow. You can do the following - activate GoUrl Escrow on <a "
+"href='%s'>escrow tab</a>, collect the escrow funds from the buyers in a "
+"similar way as normal payments (standard commission fees apply). GoUrl will "
+"forward all payments to your wallet address/es. if a user has sent a wrong "
+"payment for an escrow order, please send payment back to the user from your "
+"wallet and asking the user to make a correct payment (appthemes doesn't "
+"allow manually approve escrow payments). When the project/etc completed, "
+"this addon will send you email notifications that you need to send the "
+"payment to the seller (or make refund to the buyer) from your own cryptocoin "
+"wallet manually."
+msgstr ""
+
+#: gourl-appthemes.php:425
+#, php-format
+msgid "Awaiting %s ..."
+msgstr ""
+
+#: gourl-appthemes.php:426
+#, php-format
+msgid "Buyer - <a href='%s'>user%s - %s</a> &#160; (need to pay escrow, %s)"
+msgstr ""
+
+#: gourl-appthemes.php:431
+#, php-format
+msgid "Seller - <a href='%s'>user%s - %s</a> &#160; (agreed on %s)"
+msgstr ""
+
+#: gourl-appthemes.php:462
+msgid "Project Completed"
+msgstr ""
+
+#: gourl-appthemes.php:466
+msgid ""
+"You need to complete escrow - send funds from your wallet to the Seller "
+"manually"
+msgstr ""
+
+#: gourl-appthemes.php:472 gourl-appthemes.php:515
+msgid "Hello,"
+msgstr ""
+
+#: gourl-appthemes.php:473
+#, php-format
+msgid ""
+"You need to complete <a href='%s'>Escrow #%s</a> - send funds from your "
+"wallet to the Seller manually."
+msgstr ""
+
+#: gourl-appthemes.php:474 gourl-appthemes.php:517
+#, php-format
+msgid "Escrow <a href='%s'>#%s</a> Log -"
+msgstr ""
+
+#: gourl-appthemes.php:505
+msgid "Project Failed"
+msgstr ""
+
+#: gourl-appthemes.php:509
+msgid ""
+"You need to REFUND escrow - send funds back from your wallet to the Buyer "
+"manually"
+msgstr ""
+
+#: gourl-appthemes.php:516
+#, php-format
+msgid ""
+"You need to REFUND <a href='%s'>Escrow #%s</a> - send funds back from your "
+"wallet to the Buyer manually."
+msgstr ""
+
+#: gourl-appthemes.php:556
+msgid " Address"
+msgstr ""
+
+#: gourl-appthemes.php:560
+#, php-format
+msgid ""
+"%s transfers will be made to this your %s address (if buyer pays you in <a "
+"target='_blank' href='%s'>%s</a>)"
+msgstr ""
+
+#: gourl-appthemes.php:566
+msgid "Cryptocoin Escrow Information"
+msgstr ""
+
+#: gourl-appthemes.php:611
+msgid "Transfer Funds Now &#187;"
+msgstr ""
+
+#: gourl-appthemes.php:643
+#, php-format
+msgid "%s - <a href='%s'>user%s</a> - provided %s wallet address: &#160; %s"
+msgstr ""
+
+#: gourl-appthemes.php:693
+msgid "Yes"
+msgstr ""
+
+#: gourl-appthemes.php:693
+msgid "No"
+msgstr ""
+
+#: gourl-appthemes.php:703
+#, php-format
+msgid ""
+"<b>Escrow Received in %s from Buyer</b><br>Amount - %s<br>Escrow for Project "
+"- <a href='%s'>%s</a><br><a href='%s'>Payment id %s</a>"
+msgstr ""
+
+#: gourl-appthemes.php:710
+#, php-format
+msgid "<b>%s Payment Received</b><br>%s<br><a href='%s'>Payment id %s</a>"
+msgstr ""
+
+#: gourl-appthemes.php:727
+#, php-format
+msgid "%s Payment id <a href='%s'>%s</a> Confirmed"
+msgstr ""
+
+#: gourl-appthemes.php:794
+#, php-format
+msgid ""
+"The GoUrl payment plugin was called to process a payment but could not "
+"retrieve the order details for orderID %s. Cannot continue!"
+msgstr ""
+
+#: gourl-appthemes.php:799
+msgid ""
+"This order's status is 'Failed' - it cannot be paid for. Please contact us "
+"if you need assistance."
+msgstr ""
+
+#: gourl-appthemes.php:804
+#, php-format
+msgid ""
+"Please try a different payment method. Admin need to install and activate "
+"wordpress plugin <a href='%s'>GoUrl Bitcoin Gateway for Wordpress</a> to "
+"accept Bitcoin/Altcoin Payments online."
+msgstr ""
+
+#: gourl-appthemes.php:810
+#, php-format
+msgid ""
+"Sorry, but there was an error processing your order. Please try a different "
+"payment method or contact us if you need assistance (GoUrl Bitcoin Plugin "
+"not configured / %s not activated)."
+msgstr ""
+
+#: gourl-appthemes.php:831
+msgid ""
+"You need first to login or register on the website to make Bitcoin/Altcoin "
+"Payments"
+msgstr ""
+
+#: gourl-appthemes.php:837
+#, php-format
+msgid ""
+"This order's amount is '%s' - it cannot be paid for. Please contact us if "
+"you need assistance."
+msgstr ""
+
+#: gourl-appthemes.php:851
+#, php-format
+msgid ""
+"Sorry, but there was an error processing your order. Please try later or use "
+"a different payment method. Cannot receive exchange rates for %s/USD from "
+"Google Finance"
+msgstr ""
+
+#: gourl-appthemes.php:867
+msgid "Pay Now -"
+msgstr ""
+
+#: gourl-appthemes.php:870
+msgid ""
+"Sorry, but there was an error processing your order. Please try a different "
+"payment method."
+msgstr ""
+
+#: gourl-appthemes.php:880
+#, php-format
+msgid "%s Payment ID: #%s"
+msgstr ""
+
+#: gourl-appthemes.php:881
+msgid "Continue"
+msgstr ""

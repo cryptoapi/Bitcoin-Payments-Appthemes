@@ -2,7 +2,7 @@
 GoUrl AppThemes - Bitcoin Payments for Classipress, Vantage, JobRoller, etc
 -----------------------------------------------------------
 
-Version 1.1.0
+Version 1.1.1
 
 
 **Provides a Bitcoin/Altcoin Payment Gateway for all Appthemes Premium Themes - Classipress, Vantage, JobRoller, Clipper, Taskerr, HireBee, Ideas, Quality Control, etc.**
@@ -15,7 +15,7 @@ Accept Bitcoin, Litecoin, Paycoin, Dogecoin, Dash, Speedcoin, Reddcoin, Potcoin,
 * Screenshots: [https://gourl.io/bitcoin-appthemes-classipress-jobroller-vantage-etc.html#screenshot](https://gourl.io/bitcoin-appthemes-classipress-jobroller-vantage-etc.html#screenshot)
 * Requires at least: Wordpress 3.5 and Any Appthemes Premium Theme
 * Tested up to: Wordpress 4.2 and Appthemes
-* Stable Tag: 1.1.0
+* Stable Tag: 1.1.1
 * License: GNU Version 2 or Any Later Version
 
 

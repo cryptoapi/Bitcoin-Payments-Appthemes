@@ -3,7 +3,7 @@
 Plugin Name: 		GoUrl AppThemes - Bitcoin Payments for Classipress, Vantage, JobRoller, etc
 Plugin URI: 		https://gourl.io/bitcoin-appthemes-classipress-jobroller-vantage-etc.html
 Description: 		Provides a <a href="https://gourl.io">GoUrl.io</a> Bitcoin/Altcoin Payment Gateway for all <a href="http://www.appthemes.com/themes/">AppThemes.com Premium Themes</a> - Classipress, Vantage, JobRoller, Clipper, Taskerr, HireBee, Ideas, Quality Control, etc. Support bitcoin/altcoins Escrow Payments; product prices in USD/EUR/etc and in cryptocoins directly; sends the amount straight to your business Bitcoin/Altcoin wallet. Convert your USD/EUR/etc prices to cryptocoins using Google/Bitstamp/Cryptsy Live Exchange Rates. Accept Bitcoin, Litecoin, Paycoin, Dogecoin, Dash, Speedcoin, Reddcoin, Potcoin, Feathercoin, Vertcoin, Vericoin, Peercoin payments online.
-Version: 			1.1.0
+Version: 			1.1.1
 Author: 			GoUrl.io
 Author URI: 		https://gourl.io
 License: 			GPLv2
@@ -14,20 +14,36 @@ GitHub Plugin URI: 	https://github.com/cryptoapi/Bitcoin-Payments-AppThemes
 
 if (!defined( 'ABSPATH' )) exit; // Exit if accessed directly
 
-add_action( 'init', 'gourl_app_gateway_load', 1);
-
-
-function gourl_app_gateway_load() 
+if (!function_exists('gourl_app_gateway_load') && !function_exists('gourl_app_load_textdomain')) // Exit if duplicate
 {
+
+	// Load Gateway
+	add_action( 'init', 'gourl_app_gateway_load', 1);
+	// Localization
+	add_action( 'plugins_loaded', 'gourl_app_load_textdomain' );
 	
+	
+	DEFINE( 'GOURLAP', 'gourl-appthemes');
+
+	
+	
+	function gourl_app_load_textdomain()
+	{
+		load_plugin_textdomain( GOURLAP, false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	}
+	
+	
+	
+	function gourl_app_gateway_load() 
+	{
+
+		
 	// AppThemes compatible product required
 	if (!class_exists('APP_Gateway') || !current_theme_supports('app-payments')) return;
-
-	define( 'GOURLAP', 'appthemes-gourl');
 	
 	// Filters
 	add_filter( 'plugin_action_links', 	'gourl_app_action_links', 10, 2 );
-	
+
 	
 	
 	/*
@@ -73,10 +89,12 @@ function gourl_app_gateway_load()
 	
 			foreach ($arr as $k => $v)
 			{
-				$details = array('symbol' => $k, 'name' => __("Cryptocurrency", GOURLAP)." - ".__(ucfirst($v), GOURLAP) );
+				$details = array('symbol' => $k, 'name' => __('Cryptocurrency', GOURLAP )." - ".__(ucfirst($v), GOURLAP ) );
 	
 				APP_Currencies::add_currency( $k, $details );
 			}
+			
+			__( 'Bitcoin', GOURLAP );  // use in translation
 		}
 	
 		return true;
@@ -116,9 +134,16 @@ function gourl_app_gateway_load()
 			if (!$title) $title = __( 'Bitcoin/Altcoins', GOURLAP );
 			
 			parent::__construct( 'gourl', array(
-					'admin' 	=> __( 'Gourl Bitcoin', GOURLAP ),
+					'admin' 	=> __( 'GoUrl Bitcoin/Altcoins', GOURLAP ),
 					'dropdown' 	=> $title
 			) );
+			
+			
+			if (is_admin() && isset($_GET["page"]) && $_GET["page"] == "app-payments-settings" && isset($_GET["tab"]) && $_GET["tab"] == "gourl" && strpos($_SERVER["SCRIPT_NAME"], "admin.php"))
+			{
+				add_action( 'admin_footer_text', array(&$this, 'admin_footer_text'), 25);
+			}
+					
 		}
 	
 		
@@ -140,16 +165,19 @@ function gourl_app_gateway_load()
 			global $gourl;
 	
 			$title   	   = __( 'GoUrl Bitcoin/Altcoins', GOURLAP );
+			
 			$description   = "<a target='_blank' href='https://gourl.io/'><img border='0' style='float:left; margin-right:15px' src='".plugin_dir_url( __FILE__ )."gourlpayments.png'></a>";
-			$description  .= sprintf(__( '<a target="_blank" href="%s">Plugin Homepage</a> &#160;&amp;&#160; <a target="_blank" href="%s">screenshots &#187;</a>', GOURLAP ), "https://gourl.io/bitcoin-appthemes-classipress-jobroller-vantage-etc.html", "https://gourl.io/bitcoin-appthemes-classipress-jobroller-vantage-etc.html#screenshot") . "<br>";
-			$description  .= sprintf(__( '<a target="_blank" href="%s">Plugin on Github - 100%% Free Open Source &#187;</a>', GOURLAP ), "https://github.com/cryptoapi/Bitcoin-Payments-Appthemes") . "<br><br>";
-				
+			$description  .= "<a target='_blank' href='https://gourl.io/bitcoin-appthemes-classipress-jobroller-vantage-etc.html'>".__( 'Plugin Homepage', GOURLAP )."</a> &#160;&amp;&#160; <a target='_blank' href='https://gourl.io/bitcoin-appthemes-classipress-jobroller-vantage-etc.html#screenshot'>".__( 'screenshots', GOURLAP )." &#187;</a><br>";
+			$description  .= "<a target='_blank' href='https://github.com/cryptoapi/Bitcoin-Payments-Appthemes'>".__( 'Plugin on Github - 100% Free Open Source', GOURLAP )." &#187;</a><br><br>";
 	
 			if (class_exists('gourlclass') && defined('GOURL') && defined('GOURL_ADMIN') && is_object($gourl))
 			{
-				if (true === version_compare(GOURL_VERSION, '1.3', '<'))
+				if (true === version_compare(GOURL_VERSION, '1.3.2', '<'))
 				{
-					$description .= '<div class="error"><p>' .sprintf(__( '<b>Your GoUrl Bitcoin Gateway <a href="%s">Main Plugin</a> version is too old. Requires 1.3 or higher version. Please <a href="%s">update</a> to latest version.</b>  &#160; &#160; &#160; &#160; Information: &#160; <a href="https://gourl.io/bitcoin-wordpress-plugin.html">Plugin Homepage</a> &#160; &#160; &#160; <a href="https://wordpress.org/plugins/gourl-bitcoin-payment-gateway-paid-downloads-membership/">WordPress.org Plugin Page</a>', GOURLAP ), GOURL_ADMIN.GOURL, $this->mainplugin_url).'</p></div>';
+					$description .= '<div class="error"><p><b>' .sprintf(__( "Your GoUrl Bitcoin Gateway <a href='%s'>Main Plugin</a> version is too old. Requires 1.3.2 or higher version. Please <a href='%s'>update</a> to latest version.", GOURLAP ), GOURL_ADMIN.GOURL, $this->mainplugin_url)."</b> &#160; &#160; &#160; &#160; " .
+							__( 'Information', GOURLAP ) . ": &#160; <a href='https://gourl.io/bitcoin-wordpress-plugin.html'>".__( 'Main Plugin Homepage', GOURLAP )."</a> &#160; &#160; &#160; " .
+							"<a href='https://wordpress.org/plugins/gourl-bitcoin-payment-gateway-paid-downloads-membership/'>".__( 'WordPress.org Plugin Page', GOURLAP )."</a></p></div>";
+						
 				}
 				else
 				{
@@ -166,18 +194,21 @@ function gourl_app_gateway_load()
 			}
 			else
 			{
+				$description .= '<div class="error"><p><b>' .
+						sprintf(__( "You need to install GoUrl Bitcoin Gateway Main Plugin also. Go to - <a href='%s'>Automatic installation</a> or <a href='%s'>Manual</a>.", GOURLAP ), $this->mainplugin_url, "https://gourl.io/bitcoin-wordpress-plugin.html") . "</b> &#160; &#160; &#160; &#160; " .
+						__( 'Information', GOURLAP ) . ": &#160; &#160;<a href='https://gourl.io/bitcoin-wordpress-plugin.html'>".__( 'Main Plugin Homepage', GOURLAP )."</a> &#160; &#160; &#160; <a href='https://wordpress.org/plugins/gourl-bitcoin-payment-gateway-paid-downloads-membership/'>" .
+						__( 'WordPress.org Plugin Page', GOURLAP ) . "</a></p></div>";
+				
 				$coins 	= "";
 				$url	= $this->mainplugin_url;
 				$url2	= $url;
 				$url3	= $url;
-				$text 	= __( '<b>Please install GoUrl Bitcoin Gateway WP Plugin &#187;</b>', GOURLAP );
-	
-				$description .= '<div class="error"><p>' .sprintf(__( '<b>You need to install GoUrl Bitcoin Gateway Main Plugin also. &#160; Go to - <a href="%s">Automatic installation</a> or <a href="https://gourl.io/bitcoin-wordpress-plugin.html">Manual</a></b>. &#160; &#160; &#160; &#160; Information: &#160; <a href="https://gourl.io/bitcoin-wordpress-plugin.html">Main Plugin Homepage</a> &#160; &#160; &#160; <a href="https://wordpress.org/plugins/gourl-bitcoin-payment-gateway-paid-downloads-membership/">WordPress.org Plugin Page</a> ', GOURLWC ), $this->mainplugin_url).'</p></div>';
+				$text 	= '<b>'.__( 'Please install GoUrl Bitcoin Gateway WP Plugin', GOURLAP ).' &#187;</b>';
 			}
 				
-			$description  	.= "<b>" . __( 'Secure payments with virtual currency. &#160; <a target="_blank" href="https://bitcoin.org/">What is Bitcoin?</a>', GOURLAP ) . '</b><br/>';
-			$description  	.= sprintf(__( 'Accept %s payments online in Appthemes Premium Themes - Classipress, Taskerr, HireBee, Vantage, Clipper, JobRoller, Ideas, Quality Control, etc.', GOURLAP), ucwords(implode(", ", $this->coin_names))).'<br/>';
-			$description 	.= __( 'If you use multiple stores/sites online, please create separate <a target="_blank" href="https://gourl.io/editrecord/coin_boxes/0">GoUrl Payment Box</a> (with unique payment box public/private keys) for each of your stores/websites. Do not use the same GoUrl Payment Box with the same public/private keys on your different websites/stores.', GOURLAP ) . '<br/><br/>';
+			$description  .= "<b>" . __( "Secure payments with virtual currency. <a target='_blank' href='https://bitcoin.org/'>What is Bitcoin?</a>", GOURLAP ) . '</b><br>';
+			$description  .= sprintf(__( 'Accept %s payments online in Appthemes Premium Themes - Classipress, Taskerr, HireBee, Vantage, Clipper, JobRoller, Ideas, Quality Control, etc.', GOURLAP ), __( ucwords(implode(", ", $this->coin_names)), GOURLAP )).'<br>';
+			$description  .= sprintf(__( "If you use multiple stores/sites online, please create separate <a target='_blank' href='%s'>GoUrl Payment Box</a> (with unique payment box public/private keys) for each of your stores/websites. Do not use the same GoUrl Payment Box with the same public/private keys on your different websites/stores.", GOURLAP ), "https://gourl.io/editrecord/coin_boxes/0") . '<br><br>';
 				
 			$fields = array(
 					array(
@@ -193,7 +224,7 @@ function gourl_app_gateway_load()
 							'type' 			=> 'select',
 							'values' 		=> $this->payments,
 							'default' 		=> key($this->payments),
-							'desc' 			=> '<p>'.sprintf(__( 'Default Coin in Crypto Payment Box. &#160; Activated Payments : <a href="%s">%s</a>', GOURLAP ), $url, $text).'</p>'
+							'desc' 			=> '<p>'.sprintf(__( "Default Coin in Crypto Payment Box. &#160; Activated Payments : <a href='%s'>%s</a>", GOURLAP ), $url, $text).'</p>'
 					),
 					array(
 							'name'			=> 'deflang',
@@ -208,14 +239,14 @@ function gourl_app_gateway_load()
 							'title' 		=> '<br>'.__('Exchange Rate Multiplier', GOURLAP ),
 							'type' 			=> 'text',
 							'default' 		=> '1.00',
-							'desc' 			=> '<p>'.sprintf(__('The system uses the multiplier rate with today LIVE cryptocurrency exchange rates (which are updated every 30 minutes) when the transaction is calculating from a fiat currency (e.g. USD, EUR, etc) to %s. <br />Example: <b>1.05</b> - will add an extra 5%% to the total price in bitcoin/altcoins, <b>0.85</b> - will be a 15%% discount for the price in bitcoin/altcoins. Default: 1.00 ', GOURLAP ), $coins).'</p>'
+							'desc' 			=> '<p>'.__('The system uses the multiplier rate with today LIVE cryptocurrency exchange rates (which are updated every 30 minutes) when the transaction is calculating from a fiat currency (e.g. USD, EUR, etc) to cryptocurrency. <br> Example: <b>1.05</b> - will add an extra 5% to the total price in bitcoin/altcoins, <b>0.85</b> - will be a 15% discount for the price in bitcoin/altcoins. Default: 1.00 ', GOURLAP ).'</p>'
 					),
 					array(
 							'name'			=> 'iconwidth',
-							'title'       	=> __( 'Icon Width', GOURLAP ),
+							'title'       	=> __( 'Icons Size', GOURLAP ),
 							'type'        	=> 'text',
 							'default'     	=> "80px",
-							'desc' 			=> '<p>'.__( 'Cryptocoin icons width in "Select Payment Method". Default 80px. Allowed: 30..250px', GOURLAP ).'</p>'
+							'desc' 			=> '<p>'.__( "Cryptocoin icons size in 'Select Payment Method' that the customer will see on your checkout. Default 60px. Allowed: 30..250px", GOURLAP ).'</p>'
 					),
 					array(
 							'name'			=> 'gourlinfo',
@@ -248,7 +279,8 @@ function gourl_app_gateway_load()
 		{
 			if (!defined('GOURL_ADMIN')) return "";
 			
-			$notes = sprintf(__( 'Payment Box <a target="_blank" href="%s">sizes</a> and border <a target="_blank" href="%s">shadow</a> you can change <a href="%s">here &#187;</a>', GOURLAP ), "https://gourl.io/images/global/sizes.png", "https://gourl.io/images/global/styles.png", GOURL_ADMIN.GOURL."settings#gourlvericoinprivate_key");
+			$notes = sprintf(__( "Payment Box <a href='%s'>sizes</a> and border <a href='%s'>shadow</a> you can change <a href='%s'>here &#187;</a>", GOURLAP ), "https://gourl.io/images/global/sizes.png", "https://gourl.io/images/global/styles.png", GOURL_ADMIN.GOURL."settings#gourlpeercoinprivate_key") . "<br><br>" . 
+					 sprintf(__( "If you want to use GoUrl AppThemes Bitcoin Gateway plugin in a language other than English, see the page <a href='%s'>Languages and Translations</a>", GOURLAP ), "https://gourl.io/languages.html");
 		
 			return $notes;
 		}
@@ -266,7 +298,15 @@ function gourl_app_gateway_load()
 		}
 		
 		
-	
+		/*
+		 * 3.6
+		*/
+		public function admin_footer_text()
+		{
+			return sprintf( __( "If you like <b>GoUrl AppThemes Bitcoin Gateway</b> please leave us a %s rating on %s. A huge thank you from GoUrl in advance!", GOURLAP ), "<a href='https://wordpress.org/support/view/plugin-reviews/gourl-appthemes-bitcoin-payments-classipress-vantage-jobroller?filter=5#postform' target='_blank'>&#9733;&#9733;&#9733;&#9733;&#9733;</a>", "<a href='https://wordpress.org/support/view/plugin-reviews/gourl-appthemes-bitcoin-payments-classipress-vantage-jobroller?filter=5#postform' target='_blank'>WordPress.org</a>");
+		}
+		
+		
 	}  // end APP_Gourl class
 
 
@@ -339,14 +379,14 @@ function appthemes_init_gourl_escrow()
 									'name' 			=> 'adminemail',
 									'default' 		=> '',
 									'type' 			=> 'text',
-									'desc' 			=> '<p>'.sprintf( __( 'Your email address. You will receive email notifications when need to send escrow funds from your wallet to the seller or to refund the buyer. You will need to make payments from your wallet/s manually.' )).'</p>'
+									'desc' 			=> '<p>'.sprintf( __( 'Your email address. You will receive email notifications when need to forward escrow funds from your wallet to the seller or to refund the buyer. You will need to make payments from your wallet/s manually.' )).'</p>'
 							),
 							array(
 									'title' 		=> '<br>'.__('Escrow - Exchange Rate Multiplier', GOURLAP ),
 									'name'			=> 'emultiplier2',
 									'default' 		=> '1.00',
 									'type' 			=> 'text',
-									'desc' 			=> '<p>'.__('The system uses the multiplier rate with today LIVE cryptocurrency exchange rates when the escrow funds amount is calculating from a fiat currency (e.g. USD, EUR, etc). <br />Example: <b>1.05</b> - will add an extra 5% to the total amount in bitcoin/altcoins, <b>0.85</b> - will be a 15% discount for the amount in bitcoin/altcoins. Default: 1.00 ', GOURLAP ).'</p><br>'
+									'desc' 			=> '<p>'.__('The system uses the multiplier rate with today LIVE cryptocurrency exchange rates when the escrow funds amount is calculating from a fiat currency (e.g. USD, EUR, etc). <br>Example: <b>1.05</b> - will add an extra 5% to the total amount in bitcoin/altcoins, <b>0.85</b> - will be a 15% discount for the amount in bitcoin/altcoins. Default: 1.00', GOURLAP ).'</p>'
 							)
 						)
 					);
@@ -362,7 +402,7 @@ function appthemes_init_gourl_escrow()
 		*/
 		public function escrow_notes()
 		{
-			$notes = sprintf(__( '<strong>Important:</strong> Gourl Bitcoin/Altcoin Gateway does not fully support Escrow. You can do the following - activate GoUrl Escrow on <a href="%s">escrow tab</a>, collect the escrow funds from the buyers in a similar way as normal payments (standard commission fees apply). GoUrl will forward all payments to your wallet address/es. if a user has sent a wrong payment for an escrow order, please send payment back to the user from your wallet and asking the user to make a correct payment (appthemes doesn\'t allow manually approve escrow payments). When the project/etc completed, this addon will send you email notifications that you need to send the payment to the seller (or make refund to the buyer) from your own cryptocoin wallet manually.', GOURLAP ), admin_url('admin.php?page=app-payments-settings&tab=escrow'));
+			$notes = sprintf(__( "<strong>Important:</strong> Gourl Bitcoin/Altcoin Gateway does not fully support Escrow. You can do the following - activate GoUrl Escrow on <a href='%s'>escrow tab</a>, collect the escrow funds from the buyers in a similar way as normal payments (standard commission fees apply). GoUrl will forward all payments to your wallet address/es. if a user has sent a wrong payment for an escrow order, please send payment back to the user from your wallet and asking the user to make a correct payment (appthemes doesn't allow manually approve escrow payments). When the project/etc completed, this addon will send you email notifications that you need to send the payment to the seller (or make refund to the buyer) from your own cryptocoin wallet manually.", GOURLAP ), admin_url('admin.php?page=app-payments-settings&tab=escrow'));
 				
 			return $notes;
 		}		
@@ -383,12 +423,12 @@ function appthemes_init_gourl_escrow()
 				$buyer = get_userdata($order->get_author());
 				
 				$txt  = sprintf(__('Awaiting %s ...', GOURLAP), $order->get_description()) . "<br>";
-				$txt .= sprintf(__('Buyer - <a href="%s">user%s - %s</a> &#160; (need to pay escrow, %s)', GOURLAP), admin_url("user-edit.php?user_id=").$buyer->ID, $buyer->ID, $buyer->user_login, $order->get_total() . " "  . $order->get_currency()) . "<br>";
+				$txt .= sprintf(__("Buyer - <a href='%s'>user%s - %s</a> &#160; (need to pay escrow, %s)", GOURLAP), admin_url("user-edit.php?user_id=").$buyer->ID, $buyer->ID, $buyer->user_login, $order->get_total() . " "  . $order->get_currency()) . "<br>";
 				$sellers = $order->get_receivers();
 				foreach ($sellers as $k => $v)
 				{
 					$seller = get_userdata($k);
-					$txt .= sprintf(__('Seller - <a href="%s">user%s - %s</a> &#160; (agreed on %s)', GOURLAP), admin_url("user-edit.php?user_id=").$seller->ID, $seller->ID, $seller->user_login, $v . " " . $order->get_currency()) . "<br>";
+					$txt .= sprintf(__("Seller - <a href='%s'>user%s - %s</a> &#160; (agreed on %s)", GOURLAP), admin_url("user-edit.php?user_id=").$seller->ID, $seller->ID, $seller->user_login, $v . " " . $order->get_currency()) . "<br>";
 				}
 				$txt = substr($txt, 0, -4);
 				
@@ -419,7 +459,7 @@ function appthemes_init_gourl_escrow()
 			
 			$order_id = $order->get_id();
 				
-			$txt =  __( "<b>Project Completed</b>", GOURLAP );
+			$txt =  "<b>".__( "Project Completed", GOURLAP )."</b>";
 			
 			if ($order->get_data('escrow_received') == 'yes')
 			{
@@ -462,7 +502,7 @@ function appthemes_init_gourl_escrow()
 				
 			$order_id = $order->get_id();
 		
-			$txt =  __( "<b>Project Failed</b>", GOURLAP );
+			$txt =  "<b>".__( "Project Failed", GOURLAP )."</b>";
 				
 			if ($order->get_data('escrow_received') == 'yes')
 			{
@@ -517,7 +557,7 @@ function appthemes_init_gourl_escrow()
 								'type'  => 'text',
 								'name'  => 'escrow_addr_'.strtolower($v),
 								'extra' => array( 'class' => 'text regular-text'),
-								'desc'  => sprintf(__( $v.' transfers will be made to this your '.$v.' address (if buyer pays you in <a target="_blank" href="%s">'.strtolower($v).'s</a>)', GOURLAP ), $www[strtolower($v)] ),
+								'desc'  => sprintf(__( "%s transfers will be made to this your %s address (if buyer pays you in <a target='_blank' href='%s'>%s</a>)", GOURLAP ), $v, $v, $www[strtolower($v)], strtolower($v).'s' ),
 							);
 			}
 			
@@ -600,7 +640,7 @@ function appthemes_init_gourl_escrow()
 			if (!$addr) 						$addr = "- no -";
 			elseif (strlen($addr) < 26 || strlen($addr) > 35) 	$addr = "- invalid -";
 			elseif (isset($www[$coinName])) 	$addr = "<a target='_blank' href='" . $www[$coinName] . (stripos($www[$coinName],'cryptoid.info')?'address.dws?':'address/') . $addr . "'>" . $addr . "</a>";
-			$txt .= sprintf(__(($type == "buyer"?"Buyer":"Seller").' - <a href="%s">user%s</a> - provided %s wallet address: &#160; %s', GOURLAP), admin_url("user-edit.php?user_id=").$k, $k, ucfirst($coinName), $addr) . "<br>";
+			$txt .= sprintf(__("%s - <a href='%s'>user%s</a> - provided %s wallet address: &#160; %s", GOURLAP), ($type == "buyer"?"Buyer":"Seller"), admin_url("user-edit.php?user_id=").$k, $k, ucfirst($coinName), $addr) . "<br>";
 		}
 		
 		$txt = substr($txt, 0, -4);
@@ -660,14 +700,14 @@ function appthemes_init_gourl_escrow()
 			if ($escrow)
 			{
 				$item = $order->get_item();
-				$order->log(sprintf(__('<b>Escrow Received in %s from Buyer</b><br>Amount - %s<br>Escrow for Project - <a href="%s">%s</a><br><a href="%s">Payment id %s</a>', GOURLAP), $coinName."s", $amount, $item["post"]->guid, $item["post"]->post_title, GOURL_ADMIN.GOURL."payments&s=payment_".$payID, $payID), 'received');
+				$order->log(sprintf(__("<b>Escrow Received in %s from Buyer</b><br>Amount - %s<br>Escrow for Project - <a href='%s'>%s</a><br><a href='%s'>Payment id %s</a>", GOURLAP), $coinName."s", $amount, $item["post"]->guid, $item["post"]->post_title, GOURL_ADMIN.GOURL."payments&s=payment_".$payID, $payID), 'received');
 				$order->add_data( 'escrow_received', 'yes' );
 				$order->log(app_gourl_escrow_wallets($coinName, $order));
 				
 			}
 			else
 			{
-				$order->log(sprintf(__('<b>%s Payment Received</b><br>%s<br><a href="%s">Payment id %s</a>', GOURLAP), $coinName, $amount, GOURL_ADMIN.GOURL."payments&s=payment_".$payID, $payID), 'received');
+				$order->log(sprintf(__("<b>%s Payment Received</b><br>%s<br><a href='%s'>Payment id %s</a>", GOURLAP), $coinName, $amount, GOURL_ADMIN.GOURL."payments&s=payment_".$payID, $payID), 'received');
 			}
 	
 			$order->add_data( 'coinname', 	$coinName);
@@ -684,7 +724,7 @@ function appthemes_init_gourl_escrow()
 		if ($payment_details["is_confirmed"])
 		{
 			$order->add_data( 'confirmed', $confirmed );
-			$order->log(sprintf(__('%s Payment id <a href="%s">%s</a> Confirmed', GOURLAP), $coinName, GOURL_ADMIN.GOURL."payments&s=payment_".$payID, $payID), 'confirmed');
+			$order->log(sprintf(__("%s Payment id <a href='%s'>%s</a> Confirmed", GOURLAP), $coinName, GOURL_ADMIN.GOURL."payments&s=payment_".$payID, $payID), 'confirmed');
 		}
 		 
 		 
@@ -718,6 +758,9 @@ function appthemes_init_gourl_escrow()
 		else $payments = $coin_names = $languages = array();
 		
 		
+		if (!isset($options["emultiplier2"])) 	$options["emultiplier2"] = 1;
+		if (!isset($options["adminemail"])) 	$options["adminemail"] = "";
+		
 		
 		// validate options
 		// -----------------
@@ -744,25 +787,27 @@ function appthemes_init_gourl_escrow()
 		$order_id 		= $order->get_id();
 		$order_currency = $order->get_currency();
 		$order_total	= $order->get_total();
-		$txt			= ($escrow) ? "Escrow" : "";
 
-		if (!$order || !$order_id || !$order_total || ($escrow && !$order->is_escrow())) throw new Exception('The GoUrl payment plugin was called to process a payment but could not retrieve the order details for order_id ' . $order_id . '. Cannot continue!');
-	
-		if (appthemes_get_order($order_id)->get_status() == APPTHEMES_ORDER_FAILED)
+		if (!$order || !$order_id || !$order_total || ($escrow && !$order->is_escrow()))
 		{
 			echo '<h2>' . __( 'Information', GOURLAP ) . '</h2>' . PHP_EOL;
-			echo "<div class='notice error alert-box'>". __( 'This '.$txt.' order&rsquo;s status is &ldquo;Failed&rdquo; &mdash; it cannot be paid for. Please contact us if you need assistance.', GOURLAP )."</div>";
+			echo "<div class='notice error alert-box'>". sprintf(__( 'The GoUrl payment plugin was called to process a payment but could not retrieve the order details for orderID %s. Cannot continue!', GOURLAP ), $order_id)."</div>";
+		}
+		elseif (appthemes_get_order($order_id)->get_status() == APPTHEMES_ORDER_FAILED)
+		{
+			echo '<h2>' . __( 'Information', GOURLAP ) . '</h2>' . PHP_EOL;
+			echo "<div class='notice error alert-box'>". __( "This order's status is 'Failed' - it cannot be paid for. Please contact us if you need assistance.", GOURLAP )."</div>";
 		}
 		elseif (!class_exists('gourlclass') || !defined('GOURL') || !is_object($gourl))
 		{
 			echo '<h2>' . __( 'Information', GOURLAP ) . '</h2>' . PHP_EOL;
-			echo "<div class='notice error alert-box'>".__( "Please try a different '.$txt.' payment method. Admin need to install and activate wordpress plugin 'GoUrl Bitcoin Gateway' (https://gourl.io/bitcoin-wordpress-plugin.html) to accept Bitcoin/Altcoin Payments online", GOURLAP )."</div>";
+			echo "<div class='notice error alert-box'>".sprintf(__( "Please try a different payment method. Admin need to install and activate wordpress plugin <a href='%s'>GoUrl Bitcoin Gateway for Wordpress</a> to accept Bitcoin/Altcoin Payments online.", GOURLAP), "https://gourl.io/bitcoin-wordpress-plugin.html")."</div>";
 		}
-		elseif (!$payments || !$options["defcoin"] || true === version_compare(GOURL_VERSION, '1.3', '<') ||
+		elseif (!$payments || !$options["defcoin"] || true === version_compare(GOURL_VERSION, '1.3.2', '<') ||
 				(array_key_exists($order_currency, $coin_names) && !array_key_exists($order_currency, $payments)))
 		{
 			echo '<h2>' . __( 'Information', GOURLAP ) . '</h2>' . PHP_EOL;
-			echo  "<div class='notice error alert-box'>".sprintf(__( 'Sorry, but there was an error processing your '.$txt.' order. Please try a different payment method or contact us if you need assistance. (GoUrl Bitcoin Plugin not configured - <b>%s</b> not activated)', GOURLAP ),(!$payments || !$options["defcoin"]?"GoUrl Bitcoin":ucfirst($coin_names[$order_currency])))."</div>";
+			echo  "<div class='notice error alert-box'>".sprintf(__( 'Sorry, but there was an error processing your order. Please try a different payment method or contact us if you need assistance (GoUrl Bitcoin Plugin not configured / %s not activated).', GOURLAP ), (!$payments || !$options["defcoin"] || !isset($coin_names[$order_currency]) ? "GoUrl Bitcoin" : ucfirst($coin_names[$order_currency])))."</div>";
 		}
 		else
 		{
@@ -783,13 +828,13 @@ function appthemes_init_gourl_escrow()
 			{
 				echo '<h2>' . __( 'Information', GOURLAP ) . '</h2>' . PHP_EOL;
 				echo "<div align='center'><a href='".wp_login_url(get_permalink())."'>
-						<img style='border:none;box-shadow:none;' title='".__('You need first to login or register on the website to make '.$txt.' Bitcoin/Altcoin Payments', GOURLAP )."' vspace='10'
+						<img style='border:none;box-shadow:none;' title='".__('You need first to login or register on the website to make Bitcoin/Altcoin Payments', GOURLAP )."' vspace='10'
 						src='".$gourl->box_image()."' border='0'></a></div>";
 			}
 			elseif ($amount <= 0)
 			{
 				echo '<h2>' . __( 'Information', GOURLAP ) . '</h2>' . PHP_EOL;
-				echo "<div class='notice error alert-box'>". sprintf(__( 'This '.$txt.' order&rsquo;s amount is &ldquo;%s&rdquo; &mdash; it cannot be paid for. Please contact us if you need assistance.', GOURLAP ), $amount ." " . $currency)."</div>";
+				echo "<div class='notice error alert-box'>". sprintf(__( "This order's amount is '%s' - it cannot be paid for. Please contact us if you need assistance.", GOURLAP ), $amount ." " . $currency)."</div>";
 			}
 			else
 			{
@@ -803,7 +848,7 @@ function appthemes_init_gourl_escrow()
 					if ($amount <= 0)
 					{
 						echo '<h2>' . __( 'Information', GOURLAP ) . '</h2>' . PHP_EOL;
-						echo "<div class='notice error alert-box'>".sprintf(__( 'Sorry, but there was an error processing your '.$txt.' order. Please try later or use a different payment method. Cannot receive exchange rates for %s/USD from Google Finance', GOURLAP ), $currency)."</div>";
+						echo "<div class='notice error alert-box'>".sprintf(__( "Sorry, but there was an error processing your order. Please try later or use a different payment method. Cannot receive exchange rates for %s/USD from Google Finance", GOURLAP ), $currency)."</div>";
 					}
 					else $currency = "USD";
 				}
@@ -819,10 +864,10 @@ function appthemes_init_gourl_escrow()
 					// crypto payment gateway
 					$result = $gourl->cryptopayments ($plugin, $amount, $currency, $orderID, $period, $language, $coin, $affiliate_key, $userID, $options["iconwidth"]);
 	
-					if (!$result["is_paid"]) echo '<h2> &#160; ' . __( ($escrow ? 'Escrow. ' : '') . 'Pay Now', GOURLAP ) . '</h2><br>' . PHP_EOL;
+					if (!$result["is_paid"]) echo '<h2> &#160; ' . __( ($escrow ? 'Escrow. ' : '') . 'Pay Now -', GOURLAP ) . '</h2><br>' . PHP_EOL;
 					else echo "<br><br>";
 	
-					if ($result["error"]) echo "<div class='notice error alert-box'>".__( "Sorry, but there was an error processing your '.$txt.' order. Please try a different payment method.", GOURLAP )."<br/>".$result["error"]."</div>";
+					if ($result["error"]) echo "<div class='notice error alert-box'>".__( "Sorry, but there was an error processing your order. Please try a different payment method.", GOURLAP )."<br>".$result["error"]."</div>";
 					else
 					{
 						// display payment box or successful payment result
@@ -857,6 +902,6 @@ function appthemes_init_gourl_escrow()
 
 
 
-} // end gourl_app_gateway_load()
+	} // end gourl_app_gateway_load()                
 
-
+} 
