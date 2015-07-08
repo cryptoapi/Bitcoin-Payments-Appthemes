@@ -2,8 +2,8 @@
 /*
 Plugin Name: 		GoUrl AppThemes - Bitcoin Payments for Classipress, Vantage, JobRoller, etc
 Plugin URI: 		https://gourl.io/bitcoin-appthemes-classipress-jobroller-vantage-etc.html
-Description: 		Provides a <a href="https://gourl.io">GoUrl.io</a> Bitcoin/Altcoin Payment Gateway for all <a href="http://www.appthemes.com/themes/">AppThemes.com Premium Themes</a> - Classipress, Vantage, JobRoller, Clipper, Taskerr, HireBee, Ideas, Quality Control, etc. Support bitcoin/altcoins Escrow Payments; product prices in USD/EUR/etc and in cryptocoins directly; sends the amount straight to your business Bitcoin/Altcoin wallet. Convert your USD/EUR/etc prices to cryptocoins using Google/Bitstamp/Cryptsy Live Exchange Rates. Accept Bitcoin, Litecoin, Paycoin, Dogecoin, Dash, Speedcoin, Reddcoin, Potcoin, Feathercoin, Vertcoin, Vericoin, Peercoin payments online.
-Version: 			1.1.1
+Description: 		Provides a <a href="https://gourl.io">GoUrl.io</a> Bitcoin/Altcoin Payment Gateway for all <a href="http://www.appthemes.com/themes/">AppThemes.com Premium Themes</a> - Classipress, Vantage, JobRoller, Clipper, Taskerr, HireBee, Ideas, Quality Control, etc. Support bitcoin/altcoins Escrow Payments; product prices in USD/EUR/etc and in cryptocoins directly; sends the amount straight to your business Bitcoin/Altcoin wallet. Convert your USD/EUR/etc prices to cryptocoins using Google/Bitstamp/Cryptsy Live Exchange Rates. Accept Bitcoin, Litecoin, Paycoin, Dogecoin, Dash, Speedcoin, Reddcoin, Potcoin, Feathercoin, Vertcoin, Vericoin, Peercoin, MonetaryUnit payments online.
+Version: 			1.1.2
 Author: 			GoUrl.io
 Author URI: 		https://gourl.io
 License: 			GPLv2
@@ -117,7 +117,7 @@ if (!function_exists('gourl_app_gateway_load') && !function_exists('gourl_app_lo
 	
 		private $payments 			= array();
 		private $languages 			= array();
-		private $coin_names			= array('BTC' => 'bitcoin', 'LTC' => 'litecoin', 'XPY' => 'paycoin', 'DOGE' => 'dogecoin', 'DASH' => 'dash', 'SPD' => 'speedcoin', 'RDD' => 'reddcoin', 'POT' => 'potcoin', 'FTC' => 'feathercoin', 'VTC' => 'vertcoin', 'VRC' => 'vericoin', 'PPC' => 'peercoin');
+		private $coin_names			= array('BTC' => 'bitcoin', 'LTC' => 'litecoin', 'XPY' => 'paycoin', 'DOGE' => 'dogecoin', 'DASH' => 'dash', 'SPD' => 'speedcoin', 'RDD' => 'reddcoin', 'POT' => 'potcoin', 'FTC' => 'feathercoin', 'VTC' => 'vertcoin', 'VRC' => 'vericoin', 'PPC' => 'peercoin', 'MUE' => 'monetaryunit');
 		private $mainplugin_url		= "";
 	
 		
@@ -172,9 +172,9 @@ if (!function_exists('gourl_app_gateway_load') && !function_exists('gourl_app_lo
 	
 			if (class_exists('gourlclass') && defined('GOURL') && defined('GOURL_ADMIN') && is_object($gourl))
 			{
-				if (true === version_compare(GOURL_VERSION, '1.3.2', '<'))
+				if (true === version_compare(GOURL_VERSION, '1.3.3', '<'))
 				{
-					$description .= '<div class="error"><p><b>' .sprintf(__( "Your GoUrl Bitcoin Gateway <a href='%s'>Main Plugin</a> version is too old. Requires 1.3.2 or higher version. Please <a href='%s'>update</a> to latest version.", GOURLAP ), GOURL_ADMIN.GOURL, $this->mainplugin_url)."</b> &#160; &#160; &#160; &#160; " .
+					$description .= '<div class="error"><p><b>' .sprintf(__( "Your GoUrl Bitcoin Gateway <a href='%s'>Main Plugin</a> version is too old. Requires 1.3.3 or higher version. Please <a href='%s'>update</a> to latest version.", GOURLAP ), GOURL_ADMIN.GOURL, $this->mainplugin_url)."</b> &#160; &#160; &#160; &#160; " .
 							__( 'Information', GOURLAP ) . ": &#160; <a href='https://gourl.io/bitcoin-wordpress-plugin.html'>".__( 'Main Plugin Homepage', GOURLAP )."</a> &#160; &#160; &#160; " .
 							"<a href='https://wordpress.org/plugins/gourl-bitcoin-payment-gateway-paid-downloads-membership/'>".__( 'WordPress.org Plugin Page', GOURLAP )."</a></p></div>";
 						
@@ -279,7 +279,7 @@ if (!function_exists('gourl_app_gateway_load') && !function_exists('gourl_app_lo
 		{
 			if (!defined('GOURL_ADMIN')) return "";
 			
-			$notes = sprintf(__( "Payment Box <a href='%s'>sizes</a> and border <a href='%s'>shadow</a> you can change <a href='%s'>here &#187;</a>", GOURLAP ), "https://gourl.io/images/global/sizes.png", "https://gourl.io/images/global/styles.png", GOURL_ADMIN.GOURL."settings#gourlpeercoinprivate_key") . "<br><br>" . 
+			$notes = sprintf(__( "Payment Box <a href='%s'>sizes</a> and border <a href='%s'>shadow</a> you can change <a href='%s'>here &#187;</a>", GOURLAP ), "https://gourl.io/images/global/sizes.png", "https://gourl.io/images/global/styles.png", GOURL_ADMIN.GOURL."settings#gourlmonetaryunitprivate_key") . "<br><br>" . 
 					 sprintf(__( "If you want to use GoUrl AppThemes Bitcoin Gateway plugin in a language other than English, see the page <a href='%s'>Languages and Translations</a>", GOURLAP ), "https://gourl.io/languages.html");
 		
 			return $notes;
@@ -541,7 +541,7 @@ function appthemes_init_gourl_escrow()
 		{
 			global $gourl; 
 	
-			if (class_exists('gourlclass') && defined('GOURL') && defined('GOURL_ADMIN') && is_object($gourl) && true === version_compare(GOURL_VERSION, '1.3', '>='))
+			if (class_exists('gourlclass') && defined('GOURL') && defined('GOURL_ADMIN') && is_object($gourl) && true === version_compare(GOURL_VERSION, '1.3.3', '>='))
 			{
 				$payments 	= $gourl->payments(); 		// Activated Payments
 				$www		= $gourl->coin_www(); 		// Websites
@@ -749,7 +749,7 @@ function appthemes_init_gourl_escrow()
 		global $gourl;
 
 		
-		if (class_exists('gourlclass') && defined('GOURL') && defined('GOURL_ADMIN') && is_object($gourl) && true === version_compare(GOURL_VERSION, '1.3', '>='))
+		if (class_exists('gourlclass') && defined('GOURL') && defined('GOURL_ADMIN') && is_object($gourl) && true === version_compare(GOURL_VERSION, '1.3.3', '>='))
 		{
 			$payments 	= $gourl->payments(); 		// Activated Payments
 			$coin_names	= $gourl->coin_names(); 	// All Coins
@@ -803,7 +803,7 @@ function appthemes_init_gourl_escrow()
 			echo '<h2>' . __( 'Information', GOURLAP ) . '</h2>' . PHP_EOL;
 			echo "<div class='notice error alert-box'>".sprintf(__( "Please try a different payment method. Admin need to install and activate wordpress plugin <a href='%s'>GoUrl Bitcoin Gateway for Wordpress</a> to accept Bitcoin/Altcoin Payments online.", GOURLAP), "https://gourl.io/bitcoin-wordpress-plugin.html")."</div>";
 		}
-		elseif (!$payments || !$options["defcoin"] || true === version_compare(GOURL_VERSION, '1.3.2', '<') ||
+		elseif (!$payments || !$options["defcoin"] || true === version_compare(GOURL_VERSION, '1.3.3', '<') ||
 				(array_key_exists($order_currency, $coin_names) && !array_key_exists($order_currency, $payments)))
 		{
 			echo '<h2>' . __( 'Information', GOURLAP ) . '</h2>' . PHP_EOL;
@@ -902,6 +902,6 @@ function appthemes_init_gourl_escrow()
 
 
 
-	} // end gourl_app_gateway_load()                
+	} // end gourl_app_gateway_load()         
 
 } 

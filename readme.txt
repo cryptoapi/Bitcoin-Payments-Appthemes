@@ -3,10 +3,10 @@ Contributors: gourl, GoUrl.io
 Plugin Name: GoUrl AppThemes - Bitcoin Payments for Classipress, Vantage, JobRoller, etc
 Plugin URI: https://gourl.io/bitcoin-appthemes-classipress-jobroller-vantage-etc.html
 Author URI: https://gourl.io 
-tags: appthemes, app themes, bitcoin, bitcoins, bitcoin payments, bitcoin escrow, bitcoin escrow script, gourl, escrow, escrow payments, appthemes bitcoin, cryptocurrency, btc, payment gateway, payment, e-commerce, bitcoin plugin, litecoin, dogecoin, speedcoin, dash, vertcoin, reddcoin, feathercoin, vericoin, potcoin, paycoin, premium themes, premium theme, classipress, vantage, jobroller, clipper, taskerr, hirebee, ideas, quality control, premium, theme, themes, peercoin
+tags: appthemes, app themes, bitcoin, bitcoins, bitcoin payments, bitcoin escrow, bitcoin escrow script, gourl, escrow, escrow payments, appthemes bitcoin, cryptocurrency, btc, payment gateway, payment, e-commerce, bitcoin plugin, litecoin, dogecoin, darkcoin, dash, speedcoin, vertcoin, reddcoin, feathercoin, vericoin, potcoin, paycoin, monetaryunit, peercoin, premium themes, premium theme, classipress, vantage, jobroller, clipper, taskerr, hirebee, ideas, quality control, premium, theme, themes, peercoin
 Requires at least: 3.5
-Tested up to: 4.2
-Stable Tag: 1.1.1
+Tested up to: 4.3
+Stable Tag: 1.1.2
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,7 +23,7 @@ Wordpress Plugin for Appthemes Features -
 
 * 100% Free Open Source Plugin on [Github.com](https://github.com/cryptoapi/Bitcoin-Payments-Appthemes)
 * Provides a Cryptocurrency Payment Gateway for [Appthemes](http://www.appthemes.com/themes/) - Classipress, Vantage, JobRoller, Clipper, Taskerr, HireBee, Ideas, Quality Control, etc.
-* Accept Bitcoin, Litecoin, Paycoin, Dogecoin, Dash, Speedcoin, Reddcoin, Potcoin, Feathercoin, Vertcoin, Vericoin, Peercoin payments in Appthemes
+* Accept Bitcoin, Litecoin, Paycoin, Dogecoin, Dash, Speedcoin, Reddcoin, Potcoin, Feathercoin, Vertcoin, Vericoin, Peercoin, MonetaryUnit payments in Appthemes
 * No Monthly Fee, Transaction Fee from 0%
 * Bitcoin/altcoin Escrow payments support
 * Product Prices in Bitcoin/Altcoins directly and sends the amount straight to your business wallet.
@@ -87,6 +87,9 @@ In the search field type "GoUrl Appthemes" and click Search Plugins. Once you've
 
 == Changelog ==
 
+= 1.1.2 =
+Add MonetaryUnit [MUE] cryptocurrency
+
 = 1.1.1 =
 Localisation - You can easy change/localize any text in plugin
 
@@ -98,9 +101,9 @@ Localisation - You can easy change/localize any text in plugin
 Support bitcoin/altcoin escrow payments
 
 = 1.0.1 =
-Support new coin - Paycoin
+Add Paycoin [XPY] cryptocurrency
 
 = 1.0.0 =
 Initial Release
-  
-  
+ 
+ 
